@@ -1,0 +1,79 @@
+<template element.ref="element" class="${dragging ? 'scrolling': ''} ${active || dragging ? 'active' : ''}" mouseover.trigger="handleMouseOver($event)" mouseout.trigger="handleMouseOut($event)">
+  <div class="stackable" element.ref="stackable">
+      <div style="display:none" element.ref="stackRenderSizeID">
+        ${stackRenderSizeCounter}
+      </div>
+      <div class="stackable-size" element.ref="stackRenderSize">
+         <template repeat.for="category of stackRenderSizeCategories">
+           <div class="stackable-group">
+             <div class="stackable-header">
+                <template part="heading" replaceable>
+                  ${category.name}
+                </template>
+              </div>
+              <div class="stackable-items">
+                <template if.bind="$first" part="preview" replaceable>
+                </template>
+              </div>
+          </div>
+        </template>
+      </div>
+      <div class="stackable-top" element.ref="stackTop">
+        <template repeat.for="category of stackTopCategies">
+          <div class="stackable-group">
+            <div class="stackable-header" click.delegate="showCategoryTop($index)">
+              <template part="heading" replaceable>
+                ${category.name}
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="stackable-bottom" element.ref="stackBottom">
+         <template repeat.for="category of stackBottomCategies">
+           <div class="stackable-group">
+             <div class="stackable-header" click.delegate="showCategoryBottom($index)">
+                <template part="heading" replaceable>
+                  ${category.name}
+                </template>
+              </div>
+              <div class="stackable-items">
+                <template if.bind="$first && category.collection.length != 0" part="preview" replaceable>
+                </template>
+              </div>
+           </div>
+        </template>
+        <span class="stackable-bottom-arrow">
+          <center>
+        <i element.ref="stackBottomArrow" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+        </center>
+        </span>
+      </div>
+      <div class="scrollbar-view" element.ref="viewElement">
+        <template repeat.for="category of categories">
+          <div class="stackable-group">
+            <div class="stackable-header" click.delegate="showCategoryMiddle($index)">
+              <template part="heading" replaceable>
+                ${category.name}
+              </template>
+            </div>
+            <div class="stackable-items">
+              <template part="items" replaceable>
+                <template repeat.for="item of category.collection">
+                  ${item.name}
+                </template>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div element.ref="verticalScrollbarElement" class="scrollbar scrollbar-vertical" mousedown.trigger="handleClickVerticalTrack($event)">
+        <div element.ref="verticalThumbElement" class="scrollbar-thumb" mousedown.trigger="handleMouseDownVerticalThumb($event)"></div>
+      </div>
+      <div element.ref="horizontalScrollbarElement" class="scrollbar scrollbar-horizontal" mousedown.trigger="handleClickHorizontalTrack($event)">
+        <div element.ref="horizontalThumbElement" class="scrollbar-thumb" mousedown.trigger="handleMouseDownHorizontalThumb($event)"></div>
+      </div>
+  </div>
+  <object element.ref="resizeTrigger" data="about:blank" type="text/html" class="scrollbar-resize-trigger"></object>
+</template>

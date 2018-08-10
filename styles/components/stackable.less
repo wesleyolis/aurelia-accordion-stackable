@@ -1,0 +1,90 @@
+@import "../../node_modules/font-awesome/less/font-awesome.less";
+
+div
+{
+ .stackable
+  {
+    position:relative;background-color:inherit;overflow-x: hidden;overflow-y: hidden;
+
+    div
+    {
+      &.stackable-top
+      {
+        position:absolute;top:0;width:100%;height:auto;background-color:inherit;cursor: pointer;
+        div
+        {
+          &.stackable-group
+          {
+            border-top: none;
+            border-bottom: 1px solid #999999;
+          }
+        }
+      }
+
+      &.stackable-bottom
+      {
+        position:absolute;bottom:0px;width:100%;height:auto;background-color:inherit;
+
+        div
+        {
+          &.stackable-group
+          {
+            border-top:  1px solid #999999;
+            border-bottom: none;
+
+            div
+            {
+              &.stackable-header
+              {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        span
+        {
+          &.stackable-bottom-arrow
+          {
+            position:absolute; bottom:0px;width:100%;background-color:transparent;
+          }
+
+          i {
+            visibility: hidden;
+          }
+        }
+      }
+
+      &.stackable-size
+      {
+        position: absolute;z-index:-10000;width:100%;height:auto;visibility: hidden;
+      }
+
+      &.scrollbar-view
+      {
+        visibility: hidden;
+      }
+    }
+
+    div
+    {
+      &.stackable-group
+      {
+        border-top: 1px solid #999999;
+        div
+        {
+          &.stackable-items
+          {
+            margin-top:5px;
+            border-top: 1px dashed #999999;
+          }
+        }
+      }
+    }
+  }
+}
+
+div.stackable div.scrollbar-view div.stackable-group div.stackable-header
+{
+  cursor: pointer;
+}
